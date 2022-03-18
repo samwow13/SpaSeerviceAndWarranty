@@ -7,7 +7,7 @@
 // Scripts
 // 
 
-var form = document.getElementsByTagName('form')[0];
+/*var form = document.getElementsByTagName('form')[0];
 form.addEventListener('submit',contact,false);
 function contact(e) {
    // Prevent Default Form Submission
@@ -34,7 +34,25 @@ function contact(e) {
 
    // Submit the form since we previously stopped it. May cause recursive loop in some browsers? Should research this.
    this.submit();
-}
+}*/
+var form = document.getElementById('contactForm');
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  fetch(form.action, {
+      method : "POST",
+      body: new FormData(document.getElementById("contactForm")),
+  }).then(
+      response => response.json()
+  ).then((html) => {
+    // you can put any JS code here
+    //fieldNameElement.innerHtml = "my new text"
+    //$( "#dialog" ).dialog("text setting");
+    alert('Email has been sent, thank you!')
+  });
+});
+
+
+
 
 
 window.addEventListener('DOMContentLoaded', event => {
